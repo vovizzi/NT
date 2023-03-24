@@ -1,7 +1,6 @@
 {
   "name": "nt",
   "version": "1.0.0",
-  "description": "",
   "main": "newTodo.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,5 +15,6 @@
   "bugs": {
     "url": "https://github.com/vovizzi/NT/issues"
   },
-  "homepage": "https://github.com/vovizzi/NT#readme"
+  "homepage": "https://github.com/vovizzi/NT#readme",
+  "description": ""
 }

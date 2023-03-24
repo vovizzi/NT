@@ -10,8 +10,6 @@ a {
   color: #bfbfbf;
 }
 
-
-
 .container {
   position: relative;
   max-width: 550px;
@@ -34,6 +32,7 @@ a {
 }
 
 .todo-main-view-input {
+  position: relative;
   width: 474px;
   margin-bottom: 1px;
   height: 33.59px;
@@ -67,6 +66,18 @@ a {
   color: #e6e4e4;
 }
 
+.checkArrow{
+  position: absolute;
+  left: 12px;
+  top: 140px;
+  color:black;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 15px solid #0f0f0f;
+}
+
+
+
 .todo-main-view-button {
   opacity: 0;
 }
@@ -74,6 +85,9 @@ a {
 .add-elements {
   margin-bottom: -13px;
 }
+
+
+
 
 .new-list-li {
   list-style: none;
@@ -93,16 +107,20 @@ a {
 }
 
 
-img {
+.krasivo {
   position: absolute;
   display: block;
   bottom: 20px;
   left: 10px;
   width:30px;
   height: 30px;
+  pointer-events: auto;
 }
 
-
+.cross-out {
+  text-decoration: line-through;
+  color:rgb(185, 185, 185)
+}
 
 
 .new-list-li-button {
@@ -135,9 +153,7 @@ img {
   font-weight: 500;
 }
 
-.without {
-  display: none !important;
-}
+
 
 .low-elements-action {
   position: relative;
@@ -198,3 +214,61 @@ img {
   text-align: center;
   color: #bfbfbf;
 }
+
+
+.arrow-4 {
+  position: absolute;
+  top:50px;
+  left:100px;
+  margin:20px;
+  width: 66px;
+  height: 30px;
+}
+.arrow-4-left {
+  position: absolute;
+  background-color: transparent;
+  top: 0px;
+  left: 0;
+  width: 40px;
+  height: 10px;
+  display: block;
+  transform: rotate(35deg);
+  float: right;
+  border-radius: 2px;
+}
+.arrow-4-left:after {
+  content: "";
+  background-color: #0d0d0e;
+  width: 20px;
+  height: 5px;
+  display: block;
+  float: right;
+  border-radius: 6px 10px 10px 6px;
+  transition: all 0.5s cubic-bezier(0.25, 1.7, 0.35, 0.8);
+  z-index: -1;
+}
+
+.arrow-4-right {
+  position: absolute;
+  background-color: transparent;
+  top:11px;
+  left: 18px;
+  width: 40px;
+  height: 10px;
+  display: block;
+  transform: rotate(-35deg);
+  float: right;
+  border-radius: 2px;
+}
+.arrow-4-right:after {
+  content: "";
+  background-color: #000000;
+  width: 20px;
+  height: 5px;
+  display: block;
+  float: right;
+  border-radius: 10px 6px 6px 10px;
+  transition: all 0.5s cubic-bezier(0.25, 1.7, 0.35, 0.8);
+  z-index: -1;
+}
+

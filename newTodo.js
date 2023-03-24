@@ -6,6 +6,8 @@ let currentlyVisible; // 1 - all; 2 - active; 3 - completed
 const button = document.querySelector(".todo-main-view-button");
 const input = document.querySelector(".todo-main-view-input");
 
+const container = document.querySelector('.container')
+
 const ul = document.createElement("ul");
 ul.classList.add("new-list");
 const section = document.querySelector(".add-elements");
@@ -94,6 +96,16 @@ function changeCompletion(id) {
     element.isComplete = !element.isComplete;
 }
 
+
+// Общая кнопка сворачивания 
+function addArrow() {
+// inpArrow.classList.add('checkArrow')
+container.append(inpArrow)
+inpArrow.setAttribute('class', 'checkArrow')
+list = list.map(el=> el.isComplete = true)
+}
+
+
 // Обновление списка
 function refreshList() {
     ul.innerHTML = "";
@@ -114,29 +126,16 @@ function refreshList() {
         nllSpan.textContent = el.text;
         const img = document.createElement('img')
         img.classList.add('krasivo')
-        img.setAttribute("src", el.isComplete ?  "img/checkbox-on.png" : "img/checkbox-off.png" )
+        nllSpan.setAttribute("src", el.isComplete ?   nllSpan.classList.add('cross-out') :  nllSpan.classList.remove('cross-out') )
+        img.setAttribute("src", el.isComplete ?  "checkbox-on.png" : "checkbox-off.png" )
         img.addEventListener('click', (e)=> {
-        el.isComplete = ! el.isComplete  
-        e.target.setAttribute('src',  el.isComplete ?  "img/checkbox-on.png" : "img/checkbox-off.png")
-        refreshFooter()
+        el.isComplete = !el.isComplete  
+        e.target.setAttribute('src',  el.isComplete ?  "checkbox-on.png" : "checkbox-off.png")
+        refreshFooter() 
         refreshList()
        })
-        // const nllInput = document.createElement("input");
-        // nllInput.classList.add("new-list-li-input");
-        // nllInput.setAttribute("type", "checkbox");
-        // nllInput.checked = el.isComplete;
-
-        // //const controller = new AbortController();
-        // nllInput.addEventListener("change", () => {
-        //     changeCompletion(el.id);
-        //     refreshFooter();
-        //     refreshList();
-        // });
-        //     //, { signal: controller.signal });
-        // nllLabel.append(nllInput)
         const nllButton = document.createElement("button");
         nllButton.classList.add("new-list-li-button");
-
 
         nllButton.addEventListener("click", () => {
             deleteElement(el.id);
@@ -200,24 +199,32 @@ function addFooter() {
         currentlyVisible = 3;
         refreshList();
     });
-
+ 
     const clearAll = document.createElement("label");
     clearAll.classList.add("low-elements-action-clear");
     clearAll.innerHTML = "Clear Completed";
+    
     clearAll.addEventListener("click", () => {
         list = list.filter((el) => !el.isComplete);
         if (list.length == 0) {
             removeFooter()
-        } else {
-            refreshFooter();
+        // } else {
+        //     refreshFooter();
         }
         refreshList();
-    });
-
-
+        })
+        
     divSpan.append(sp1, sp2, sp3);
     divButton.append(bt1, bt2, bt3);
-    divLowElements.append(divSpan, divButton, clearAll);
+    divLowElements.append(divSpan, divButton,clearAll);
+
+
+    // if(list.find(el=>el.isComplete == true)) {
+    //     console.log('YES')
+    //     divLowElements.append(clearAll)
+    // } else if() {
+
+    // }
     const footer = document.querySelector(".low-elements");
     footer.prepend(divLowElements);
 
@@ -234,7 +241,10 @@ function addFooter() {
     for(let i = 0; i < menuItems.length; i++){
        menuItems[i].addEventListener('click', onClick)
     }
+    
 }
+
+
 
 function removeFooter() {
     const footer = document.querySelector(".low-elements");
@@ -249,3 +259,7 @@ function refreshFooter() {
     const sp2 = document.querySelector(".l-e-actionspan-second");
     sp2.innerHTML = leftLength == 1 ? " item" : " items";
 }
+
+
+
+
